@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificate Generator</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<main>
+  <h1>Certificate Generator</h1>
+  <p class="sub">Fill a Word template with rows from a spreadsheet, one certificate per row.</p>
+
+  <section id="s1">
+    <h2><span>1.</span>Choose your files</h2>
+    <label class="drop" data-for="data">
+      <b>Data file</b><small class="hint">Drop or click to choose (.csv, .xlsx, .xls, .docx)</small>
+      <input type="file" id="data" accept=".csv,.xlsx,.xls,.docx">
+    </label>
+    <label class="drop" data-for="tpl">
+      <b>Template</b><small class="hint">Drop or click to choose (.docx with {{ placeholders }})</small>
+      <input type="file" id="tpl" accept=".docx">
+    </label>
+    <label class="check"><input type="checkbox" id="bijoy"> Convert Bijoy to Unicode</label>
+    <div class="row"><button id="load" disabled>Read columns</button></div>
+  </section>
+
+  <section id="s2" class="locked">
+    <h2><span>2.</span>Pick columns</h2>
+    <p class="meta" id="rows"></p>
+    <div class="cols" id="cols"></div>
+    <p class="meta">Renamed columns must match the placeholder names in your template.</p>
+  </section>
+
+  <section id="s3" class="locked">
+    <h2><span>3.</span>Generate</h2>
+    <label class="check"><input type="checkbox" id="merge"> Also merge into one document</label>
+    <div class="row">
+      <button id="gen">Generate certificates</button>
+      <button id="dl" hidden>Download zip</button>
+      <button id="reset" class="ghost" hidden>Start over</button>
+    </div>
+    <div class="bar"><i id="fill"></i></div>
+    <div id="msg" role="status"></div>
+  </section>
+</main>
+
+<!-- classic scripts, order matters (works over file:// too) -->
+<script src="static/config.js"></script>
+<script src="static/api.js"></script>
+<script src="static/dropzones.js"></script>
+<script src="static/columns.js"></script>
+<script src="static/app.js"></script>
+</body>
+</html>
